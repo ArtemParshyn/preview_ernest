@@ -1,0 +1,3373 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paminklų Konstruktorius</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    {% if photos.Paminklai %}
+        <link rel="preload" href="{{ photos.Paminklai }}" as="image" fetchpriority="high">
+    {% endif %}
+    {% if photos.Sonai %}
+        <link rel="preload" href="{{ photos.Sonai }}" as="image" fetchpriority="high">
+    {% endif %}
+    
+    {% if photos.Takai %}
+        <link rel="preload" href="{{ photos.Takai }}" as="image" fetchpriority="high">
+    {% endif %}
+    {% if photos.Plokstes %}
+        <link rel="preload" href="{{ photos.Plokstes }}" as="image" fetchpriority="high">
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /*! tailwindcss v4.0.10 | MIT License | https://tailwindcss.com */
+        @layer theme {
+
+            :root,
+            :host {
+                --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                --color-red-500: oklch(.637 .237 25.331);
+                --color-blue-600: oklch(.546 .245 262.881);
+                --color-gray-100: oklch(.967 .003 264.542);
+                --color-gray-200: oklch(.928 .006 264.531);
+                --color-gray-300: oklch(.872 .01 258.338);
+                --color-gray-400: oklch(.707 .022 261.325);
+                --color-gray-500: oklch(.551 .027 264.364);
+                --color-gray-600: oklch(.446 .03 256.802);
+                --color-gray-700: oklch(.373 .034 259.733);
+                --color-black: #000;
+                --color-white: #fff;
+                --spacing: .25rem;
+                --container-sm: 24rem;
+                --container-md: 28rem;
+                --text-xs: .75rem;
+                --text-xs--line-height: calc(1/.75);
+                --text-sm: .875rem;
+                --text-sm--line-height: calc(1.25/.875);
+                --text-base: 1rem;
+                --text-base--line-height: 1.5;
+                --text-lg: 1.125rem;
+                --text-lg--line-height: calc(1.75/1.125);
+                --text-xl: 1.25rem;
+                --text-xl--line-height: calc(1.75/1.25);
+                --text-2xl: 1.5rem;
+                --text-2xl--line-height: calc(2/1.5);
+                --text-3xl: 1.875rem;
+                --text-3xl--line-height: 1.2;
+                --font-weight-semibold: 600;
+                --font-weight-bold: 700;
+                --radius-md: .375rem;
+                --radius-lg: .5rem;
+                --radius-xl: .75rem;
+                --radius-2xl: 1rem;
+                --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1)infinite;
+                --blur-sm: 8px;
+                --default-transition-duration: .15s;
+                --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+                --default-font-family: var(--font-sans);
+                --default-font-feature-settings: var(--font-sans--font-feature-settings);
+                --default-font-variation-settings: var(--font-sans--font-variation-settings);
+                --default-mono-font-family: var(--font-mono);
+                --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);
+                --default-mono-font-variation-settings: var(--font-mono--font-variation-settings)
+            }
+        }
+
+        @layer base {
+
+            *,
+            :after,
+            :before,
+            ::backdrop {
+                box-sizing: border-box;
+                border: 0 solid;
+                margin: 0;
+                padding: 0
+            }
+
+            ::file-selector-button {
+                box-sizing: border-box;
+                border: 0 solid;
+                margin: 0;
+                padding: 0
+            }
+
+            html,
+            :host {
+                -webkit-text-size-adjust: 100%;
+                -moz-tab-size: 4;
+                tab-size: 4;
+                line-height: 1.5;
+                font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+                font-feature-settings: var(--default-font-feature-settings, normal);
+                font-variation-settings: var(--default-font-variation-settings, normal);
+                -webkit-tap-highlight-color: transparent
+            }
+
+            body {
+                line-height: inherit
+            }
+
+            hr {
+                height: 0;
+                color: inherit;
+                border-top-width: 1px
+            }
+
+            abbr:where([title]) {
+                -webkit-text-decoration: underline dotted;
+                text-decoration: underline dotted
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-size: inherit;
+                font-weight: inherit
+            }
+
+            a {
+                color: inherit;
+                -webkit-text-decoration: inherit;
+                text-decoration: inherit
+            }
+
+            b,
+            strong {
+                font-weight: bolder
+            }
+
+            code,
+            kbd,
+            samp,
+            pre {
+                font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+                font-feature-settings: var(--default-mono-font-feature-settings, normal);
+                font-variation-settings: var(--default-mono-font-variation-settings, normal);
+                font-size: 1em
+            }
+
+            small {
+                font-size: 80%;
+            }
+
+            sub,
+            sup {
+                vertical-align: baseline;
+                font-size: 75%;
+                line-height: 0;
+                position: relative
+            }
+
+            sub {
+                bottom: -.25em
+            }
+
+            sup {
+                top: -.5em
+            }
+
+            table {
+                text-indent: 0;
+                border-color: inherit;
+                border-collapse: collapse
+            }
+
+            :-moz-focusring {
+                outline: auto
+            }
+
+            progress {
+                vertical-align: baseline
+            }
+
+            summary {
+                display: list-item
+            }
+
+            ol,
+            ul,
+            menu {
+                list-style: none
+            }
+
+            img,
+            svg,
+            video,
+            canvas,
+            audio,
+            iframe,
+            embed,
+            object {
+                vertical-align: middle;
+                display: block
+            }
+
+            img,
+            video {
+                max-width: 100%;
+                height: auto
+            }
+
+            button,
+            input,
+            select,
+            optgroup,
+            textarea {
+                font: inherit;
+                font-feature-settings: inherit;
+                font-variation-settings: inherit;
+                letter-spacing: inherit;
+                color: inherit;
+                opacity: 1;
+                background-color: #0000;
+                border-radius: 0
+            }
+
+            ::file-selector-button {
+                font: inherit;
+                font-feature-settings: inherit;
+                font-variation-settings: inherit;
+                letter-spacing: inherit;
+                color: inherit;
+                opacity: 1;
+                background-color: #0000;
+                border-radius: 0
+            }
+
+            :where(select:is([multiple], [size])) optgroup {
+                font-weight: bolder
+            }
+
+            :where(select:is([multiple], [size])) optgroup option {
+                padding-inline-start: 20px
+            }
+
+            ::file-selector-button {
+                margin-inline-end: 4px
+            }
+
+            ::placeholder {
+                opacity: 1;
+                color: color-mix(in oklab, currentColor 50%, transparent)
+            }
+
+            textarea {
+                resize: vertical
+            }
+
+            ::-webkit-search-decoration {
+                -webkit-appearance: none
+            }
+
+            ::-webkit-date-and-time-value {
+                min-height: 1lh;
+                text-align: inherit
+            }
+
+            ::-webkit-datetime-edit {
+                display: inline-flex
+            }
+
+            ::-webkit-datetime-edit-fields-wrapper {
+                padding: 0
+            }
+
+            ::-webkit-datetime-edit {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-year-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-month-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-day-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-hour-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-minute-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-second-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-millisecond-field {
+                padding-block: 0
+            }
+
+            ::-webkit-datetime-edit-meridiem-field {
+                padding-block: 0
+            }
+
+            :-moz-ui-invalid {
+                box-shadow: none
+            }
+
+            button,
+            input:where([type=button], [type=reset], [type=submit]) {
+                -webkit-appearance: button;
+                -moz-appearance: button;
+                appearance: button
+            }
+
+            ::file-selector-button {
+                -webkit-appearance: button;
+                -moz-appearance: button;
+                appearance: button
+            }
+
+            ::-webkit-inner-spin-button {
+                height: auto
+            }
+
+            ::-webkit-outer-spin-button {
+                height: auto
+            }
+
+            [hidden]:where(:not([hidden=until-found])) {
+                display: none !important
+            }
+        }
+
+        @layer components;
+        
+        @media (max-width: 640px) {
+            .absolute.top-8 {
+                top: 1rem; /* Еще меньше на мобильных */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .md\:top-6 {
+                top: 1rem; /* Оптимально для больших экранов */
+            }
+        }
+        
+        @layer utilities {
+            .absolute {
+                position: absolute
+            }
+
+            .fixed {
+                position: fixed
+            }
+
+            .relative {
+                position: relative
+            }
+
+            .inset-0 {
+                inset: calc(var(--spacing)*0)
+            }
+
+            .top-0 {
+                top: calc(var(--spacing)*0)
+            }
+
+            .top-32 {
+                top: calc(var(--spacing)*32)
+            }
+
+            .top-40 {
+                top: calc(var(--spacing)*40)
+            }
+
+            .right-4 {
+                right: calc(var(--spacing)*4)
+            }
+
+            .bottom-4 {
+                bottom: calc(var(--spacing)*4)
+            }
+
+            .left-4 {
+                left: calc(var(--spacing)*4)
+            }
+
+            .z-5 {
+                z-index: 5
+            }
+
+            .z-10 {
+                z-index: 10
+            }
+
+            .z-100 {
+                z-index: 100
+            }
+
+            .z-200 {
+                z-index: 200
+            }
+
+            .z-300 {
+                z-index: 300
+            }
+
+            .z-400 {
+                z-index: 400
+            }
+
+            .z-1000 {
+                z-index: 1000
+            }
+
+            .z-\[50\] {
+                z-index: 50
+            }
+
+            .z-\[300\] {
+                z-index: 300
+            }
+
+            .z-\[400\] {
+                z-index: 400
+            }
+
+            .z-\[500\] {
+                z-index: 500
+            }
+
+            .col-span-2 {
+                grid-column: span 2/span 2
+            }
+
+            .mt-3 {
+                margin-top: calc(var(--spacing)*3)
+            }
+
+            .mt-4 {
+                margin-top: calc(var(--spacing)*4)
+            }
+
+            .mt-6 {
+                margin-top: calc(var(--spacing)*6)
+            }
+
+            .mt-\[30px\] {
+                margin-top: 30px
+            }
+
+            .mt-\[200px\] {
+                margin-top: 200px
+            }
+
+            .mt-\[350px\] {
+                margin-top: 350px
+            }
+
+            .mr-2 {
+                margin-right: calc(var(--spacing)*2)
+            }
+
+            .mr-\[60px\] {
+                margin-right: 60px
+            }
+
+            .mb-2 {
+                margin-bottom: calc(var(--spacing)*2)
+            }
+
+            .mb-3 {
+                margin-bottom: calc(var(--spacing)*3)
+            }
+
+            .mb-4 {
+                margin-bottom: calc(var(--spacing)*4)
+            }
+
+            .mb-6 {
+                margin-bottom: calc(var(--spacing)*6)
+            }
+
+            .mb-\[5\%\] {
+                margin-bottom: 5%
+            }
+
+            .mb-\[15px\] {
+                margin-bottom: 15px
+            }
+
+            .ml-\[23\%\] {
+                margin-left: 23%
+            }
+
+            .flex {
+                display: flex
+            }
+
+            .grid {
+                display: grid
+            }
+
+            .hidden {
+    display: none !important;
+}
+
+            .h-5 {
+                height: calc(var(--spacing)*5)
+            }
+
+            .h-\[90vh\] {
+                height: 90vh
+            }
+
+            .h-full {
+                height: 100%
+            }
+
+            .max-h-\[85\%\] {
+                max-height: 85%
+            }
+
+            .max-h-\[90\%\] {
+                max-height: 90%
+            }
+
+            .max-h-\[90vh\] {
+                max-height: 90vh
+            }
+
+            .max-h-\[100\%\] {
+                max-height: 100%
+            }
+
+            .max-h-screen {
+                max-height: 100vh
+            }
+
+            .min-h-\[300px\] {
+                min-height: 300px
+            }
+
+            .min-h-screen {
+                min-height: 100vh
+            }
+
+            .w-5 {
+                width: calc(var(--spacing)*5)
+            }
+
+            .w-\[90\%\] {
+                width: 90%
+            }
+
+            .w-\[95\%\] {
+                width: 95%
+            }
+
+            .w-full {
+                width: 100%
+            }
+
+            .max-w-\[90\%\] {
+                max-width: 90%
+            }
+
+            .max-w-\[100\%\] {
+                max-width: 100%
+            }
+
+            .max-w-md {
+                max-width: var(--container-md)
+            }
+
+            .max-w-sm {
+                max-width: var(--container-sm)
+            }
+
+            .flex-1 {
+                flex: 1
+            }
+
+            .scale-\[\.7\] {
+                scale: .7
+            }
+
+            .transform {
+                transform: var(--tw-rotate-x)var(--tw-rotate-y)var(--tw-rotate-z)var(--tw-skew-x)var(--tw-skew-y)
+            }
+
+            .animate-pulse {
+                animation: var(--animate-pulse)
+            }
+
+            .cursor-not-allowed {
+                cursor: not-allowed
+            }
+
+            .cursor-pointer {
+                cursor: pointer
+            }
+
+            .resize {
+                resize: both
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .flex-col {
+                flex-direction: column
+            }
+
+            .items-center {
+                align-items: center
+            }
+
+            .items-start {
+                align-items: flex-start
+            }
+
+            .justify-between {
+                justify-content: space-between
+            }
+
+            .justify-center {
+                justify-content: center
+            }
+
+            .justify-end {
+                justify-content: flex-end
+            }
+
+            .gap-2 {
+                gap: calc(var(--spacing)*2)
+            }
+
+            .gap-3 {
+                gap: calc(var(--spacing)*3)
+            }
+
+            .gap-4 {
+                gap: calc(var(--spacing)*4)
+            }
+
+            :where(.space-y-4>:not(:last-child)) {
+                --tw-space-y-reverse: 0;
+                margin-block-start: calc(calc(var(--spacing)*4)*var(--tw-space-y-reverse));
+                margin-block-end: calc(calc(var(--spacing)*4)*calc(1 - var(--tw-space-y-reverse)))
+            }
+
+            :where(.space-x-2>:not(:last-child)) {
+                --tw-space-x-reverse: 0;
+                margin-inline-start: calc(calc(var(--spacing)*2)*var(--tw-space-x-reverse));
+                margin-inline-end: calc(calc(var(--spacing)*2)*calc(1 - var(--tw-space-x-reverse)))
+            }
+
+            .overflow-auto {
+                overflow: auto
+            }
+
+            .overflow-hidden {
+                overflow: hidden
+            }
+
+            .overflow-y-auto {
+                overflow-y: auto
+            }
+
+            .rounded-2xl {
+                border-radius: var(--radius-2xl)
+            }
+
+            .rounded-\[20px\] {
+                border-radius: 20px
+            }
+
+            .rounded-full {
+                border-radius: 3.40282e38px
+            }
+
+            .rounded-lg {
+                border-radius: var(--radius-lg)
+            }
+
+            .rounded-md {
+                border-radius: var(--radius-md)
+            }
+
+            .rounded-xl {
+                border-radius: var(--radius-xl)
+            }
+
+            .border {
+                border-style: var(--tw-border-style);
+                border-width: 1px
+            }
+
+            .border-black {
+                border-color: var(--color-black)
+            }
+
+            .border-black\/30 {
+                border-color: color-mix(in oklab, var(--color-black)30%, transparent)
+            }
+
+            .border-gray-700 {
+                border-color: var(--color-gray-700)
+            }
+
+            .bg-black {
+                background-color: var(--color-black)
+            }
+
+            .bg-black\/10 {
+                background-color: color-mix(in oklab, var(--color-black)10%, transparent)
+            }
+
+            .bg-black\/60 {
+                background-color: color-mix(in oklab, var(--color-black)60%, transparent)
+            }
+
+            .bg-black\/70 {
+                background-color: color-mix(in oklab, var(--color-black)70%, transparent)
+            }
+
+            .bg-blue-600 {
+                background-color: var(--color-blue-600)
+            }
+
+            .bg-gray-100 {
+                background-color: var(--color-gray-100)
+            }
+
+            .bg-gray-300 {
+                background-color: var(--color-gray-300)
+            }
+
+            .bg-white {
+                background-color: var(--color-white)
+            }
+
+            .object-contain {
+                object-fit: contain
+            }
+
+            .object-cover {
+                object-fit: cover
+            }
+
+            .p-2 {
+                padding: calc(var(--spacing)*2)
+            }
+
+            .p-3 {
+                padding: calc(var(--spacing)*3)
+            }
+
+            .p-4 {
+                padding: calc(var(--spacing)*4)
+            }
+
+            .p-6 {
+                padding: calc(var(--spacing)*6)
+            }
+
+            .p-8 {
+                padding: calc(var(--spacing)*8)
+            }
+
+            .px-4 {
+                padding-inline: calc(var(--spacing)*4)
+            }
+
+            .px-5 {
+                padding-inline: calc(var(--spacing)*5)
+            }
+
+            .py-2 {
+                padding-block: calc(var(--spacing)*2)
+            }
+
+            .text-center {
+                text-align: center
+            }
+
+            .text-3xl {
+                font-size: var(--text-3xl);
+                line-height: var(--tw-leading, var(--text-3xl--line-height))
+            }
+
+            .text-base {
+                font-size: var(--text-base);
+                line-height: var(--tw-leading, var(--text-base--line-height))
+            }
+
+            .text-lg {
+                font-size: var(--text-lg);
+                line-height: var(--tw-leading, var(--text-lg--line-height))
+            }
+
+            .text-sm {
+                font-size: var(--text-sm);
+                line-height: var(--tw-leading, var(--text-sm--line-height))
+            }
+
+            .text-xl {
+                font-size: var(--text-xl);
+                line-height: var(--tw-leading, var(--text-xl--line-height))
+            }
+
+            .text-xs {
+                font-size: var(--text-xs);
+                line-height: var(--tw-leading, var(--text-xs--line-height))
+            }
+
+            .font-bold {
+                --tw-font-weight: var(--font-weight-bold);
+                font-weight: var(--font-weight-bold)
+            }
+
+            .font-semibold {
+                --tw-font-weight: var(--font-weight-semibold);
+                font-weight: var(--font-weight-semibold)
+            }
+
+            .text-black {
+                color: var(--color-black)
+            }
+
+            .text-gray-200 {
+                color: var(--color-gray-200)
+            }
+
+            .text-gray-400 {
+                color: var(--color-gray-400)
+            }
+
+            .text-gray-500 {
+                color: var(--color-gray-500)
+            }
+
+            .text-gray-700 {
+                color: var(--color-gray-700)
+            }
+
+            .text-red-500 {
+                color: var(--color-red-500)
+            }
+
+            .text-white {
+                color: var(--color-white)
+            }
+
+            .accent-black {
+                accent-color: var(--color-black)
+            }
+
+            .shadow {
+                --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, #0000001a), 0 1px 2px -1px var(--tw-shadow-color, #0000001a);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .shadow-2xl {
+                --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, #00000040);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .shadow-lg {
+                --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, #0000001a), 0 4px 6px -4px var(--tw-shadow-color, #0000001a);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .shadow-md {
+                --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .shadow-xl {
+                --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, #0000001a), 0 8px 10px -6px var(--tw-shadow-color, #0000001a);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .grayscale {
+                --tw-grayscale: grayscale(100%);
+                filter: var(--tw-blur, )var(--tw-brightness, )var(--tw-contrast, )var(--tw-grayscale, )var(--tw-hue-rotate, )var(--tw-invert, )var(--tw-saturate, )var(--tw-sepia, )var(--tw-drop-shadow, )
+            }
+
+            .backdrop-blur-sm {
+                --tw-backdrop-blur: blur(var(--blur-sm));
+                -webkit-backdrop-filter: var(--tw-backdrop-blur, )var(--tw-backdrop-brightness, )var(--tw-backdrop-contrast, )var(--tw-backdrop-grayscale, )var(--tw-backdrop-hue-rotate, )var(--tw-backdrop-invert, )var(--tw-backdrop-opacity, )var(--tw-backdrop-saturate, )var(--tw-backdrop-sepia, );
+                backdrop-filter: var(--tw-backdrop-blur, )var(--tw-backdrop-brightness, )var(--tw-backdrop-contrast, )var(--tw-backdrop-grayscale, )var(--tw-backdrop-hue-rotate, )var(--tw-backdrop-invert, )var(--tw-backdrop-opacity, )var(--tw-backdrop-saturate, )var(--tw-backdrop-sepia, )
+            }
+
+            .transition {
+                transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
+                transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+                transition-duration: var(--tw-duration, var(--default-transition-duration))
+            }
+
+            .transition-all {
+                transition-property: all;
+                transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+                transition-duration: var(--tw-duration, var(--default-transition-duration))
+            }
+
+            .transition-colors {
+                transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+                transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+                transition-duration: var(--tw-duration, var(--default-transition-duration))
+            }
+
+            .transition-transform {
+                transition-property: transform, translate, scale, rotate;
+                transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+                transition-duration: var(--tw-duration, var(--default-transition-duration))
+            }
+
+            .duration-200 {
+                --tw-duration: .2s;
+                transition-duration: .2s
+            }
+
+            .duration-300 {
+                --tw-duration: .3s;
+                transition-duration: .3s
+            }
+
+            @media (hover:hover) {
+                .hover\:scale-105:hover {
+                    --tw-scale-x: 105%;
+                    --tw-scale-y: 105%;
+                    --tw-scale-z: 105%;
+                    scale: var(--tw-scale-x)var(--tw-scale-y)
+                }
+
+                .hover\:bg-black\/20:hover {
+                    background-color: color-mix(in oklab, var(--color-black)20%, transparent)
+                }
+
+                .hover\:bg-black\/70:hover {
+                    background-color: color-mix(in oklab, var(--color-black)70%, transparent)
+                }
+
+                .hover\:bg-black\/80:hover {
+                    background-color: color-mix(in oklab, var(--color-black)80%, transparent)
+                }
+
+                .hover\:bg-gray-100:hover {
+                    background-color: var(--color-gray-100)
+                }
+
+                .hover\:bg-gray-200:hover {
+                    background-color: var(--color-gray-200)
+                }
+
+                .hover\:text-gray-600:hover {
+                    color: var(--color-gray-600)
+                }
+
+                .hover\:text-gray-700:hover {
+                    color: var(--color-gray-700)
+                }
+
+                .hover\:opacity-90:hover {
+                    opacity: .9
+                }
+            }
+
+            .focus\:ring-2:focus {
+                --tw-ring-shadow: var(--tw-ring-inset, )0 0 0 calc(2px + var(--tw-ring-offset-width))var(--tw-ring-color, currentColor);
+                box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)
+            }
+
+            .focus\:ring-black:focus {
+                --tw-ring-color: var(--color-black)
+            }
+
+            .focus\:outline-none:focus {
+                --tw-outline-style: none;
+                outline-style: none
+            }
+
+            .active\:scale-95:active {
+                --tw-scale-x: 95%;
+                --tw-scale-y: 95%;
+                --tw-scale-z: 95%;
+                scale: var(--tw-scale-x)var(--tw-scale-y)
+            }
+
+            .disabled\:opacity-50:disabled {
+                opacity: .5
+            }
+
+            @media (width>=40rem) {
+                .sm\:col-span-3 {
+                    grid-column: span 3/span 3
+                }
+
+                .sm\:mt-0 {
+                    margin-top: calc(var(--spacing)*0)
+                }
+
+                .sm\:mb-\[3\%\] {
+                    margin-bottom: 3%
+                }
+
+                .sm\:ml-\[8\%\] {
+                    margin-left: 8%
+                }
+
+                .sm\:block {
+                    display: block
+                }
+
+                .sm\:flex {
+                    display: flex
+                }
+
+                .sm\:w-\[90\%\] {
+                    width: 90%
+                }
+
+                .sm\:max-w-\[60\%\] {
+                    max-width: 60%
+                }
+
+                .sm\:grid-cols-3 {
+                    grid-template-columns: repeat(3, minmax(0, 1fr))
+                }
+
+                .sm\:text-lg {
+                    font-size: var(--text-lg);
+                    line-height: var(--tw-leading, var(--text-lg--line-height))
+                }
+
+                .sm\:text-sm {
+                    font-size: var(--text-sm);
+                    line-height: var(--tw-leading, var(--text-sm--line-height))
+                }
+
+                .sm\:text-xl {
+                    font-size: var(--text-xl);
+                    line-height: var(--tw-leading, var(--text-xl--line-height))
+                }
+            }
+
+            @media (width>=48rem) {
+                .md\:top-24 {
+                    top: calc(var(--spacing)*24)
+                }
+
+                .md\:top-30 {
+                    top: calc(var(--spacing)*30)
+                }
+
+                .md\:col-span-4 {
+                    grid-column: span 4/span 4
+                }
+
+                .md\:mb-\[4\%\] {
+                    margin-bottom: 4%
+                }
+
+                .md\:ml-\[10\%\] {
+                    margin-left: 10%
+                }
+
+                .md\:max-h-\[80\%\] {
+                    max-height: 80%
+                }
+
+                .md\:max-h-\[85\%\] {
+                    max-height: 85%
+                }
+
+                .md\:w-\[80\%\] {
+                    width: 80%
+                }
+
+                .md\:w-\[85\%\] {
+                    width: 85%
+                }
+
+                .md\:max-w-\[80\%\] {
+                    max-width: 80%
+                }
+
+                .md\:max-w-\[85\%\] {
+                    max-width: 85%
+                }
+
+                .md\:grid-cols-2 {
+                    grid-template-columns: repeat(2, minmax(0, 1fr))
+                }
+
+                .md\:text-2xl {
+                    font-size: var(--text-2xl);
+                    line-height: var(--tw-leading, var(--text-2xl--line-height))
+                }
+
+                .md\:text-base {
+                    font-size: var(--text-base);
+                    line-height: var(--tw-leading, var(--text-base--line-height))
+                }
+
+                .md\:text-xl {
+                    font-size: var(--text-xl);
+                    line-height: var(--tw-leading, var(--text-xl--line-height))
+                }
+            }
+
+            @media (width>=64rem) {
+                .lg\:ml-\[12\%\] {
+                    margin-left: 12%
+                }
+
+                .lg\:w-\[40\%\] {
+                    width: 40%
+                }
+
+                .lg\:w-\[55\%\] {
+                    width: 55%
+                }
+
+                .lg\:w-\[75\%\] {
+                    width: 75%
+                }
+
+                .lg\:w-\[80\%\] {
+                    width: 80%
+                }
+
+                .lg\:flex-row {
+                    flex-direction: row
+                }
+
+                :where(.lg\:space-y-0>:not(:last-child)) {
+                    --tw-space-y-reverse: 0;
+                    margin-block-start: calc(calc(var(--spacing)*0)*var(--tw-space-y-reverse));
+                    margin-block-end: calc(calc(var(--spacing)*0)*calc(1 - var(--tw-space-y-reverse)))
+                }
+            }
+
+            @media (width>=80rem) {
+                .xl\:ml-\[15\%\] {
+                    margin-left: 15%
+                }
+
+                .xl\:w-\[70\%\] {
+                    width: 70%
+                }
+
+                .xl\:w-\[75\%\] {
+                    width: 75%
+                }
+            }
+        }
+
+        body {
+            background-color: var(--color-white);
+            color: var(--color-black);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        html,
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @property --tw-rotate-x {
+            syntax: "*";
+            inherits: false;
+            initial-value: rotateX(0)
+        }
+
+        @property --tw-rotate-y {
+            syntax: "*";
+            inherits: false;
+            initial-value: rotateY(0)
+        }
+
+        @property --tw-rotate-z {
+            syntax: "*";
+            inherits: false;
+            initial-value: rotateZ(0)
+        }
+
+        @property --tw-skew-x {
+            syntax: "*";
+            inherits: false;
+            initial-value: skewX(0)
+        }
+
+        @property --tw-skew-y {
+            syntax: "*";
+            inherits: false;
+            initial-value: skewY(0)
+        }
+
+        @property --tw-space-y-reverse {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0
+        }
+
+        @property --tw-space-x-reverse {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0
+        }
+
+        @property --tw-border-style {
+            syntax: "*";
+            inherits: false;
+            initial-value: solid
+        }
+
+        @property --tw-font-weight {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-shadow {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0 0 #0000
+        }
+
+        @property --tw-shadow-color {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-inset-shadow {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0 0 #0000
+        }
+
+        @property --tw-inset-shadow-color {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-ring-color {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-ring-shadow {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0 0 #0000
+        }
+
+        @property --tw-inset-ring-color {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-inset-ring-shadow {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0 0 #0000
+        }
+
+        @property --tw-ring-inset {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-ring-offset-width {
+            syntax: "<length>";
+            inherits: false;
+            initial-value: 0
+        }
+
+        @property --tw-ring-offset-color {
+            syntax: "*";
+            inherits: false;
+            initial-value: #fff
+        }
+
+        @property --tw-ring-offset-shadow {
+            syntax: "*";
+            inherits: false;
+            initial-value: 0 0 #0000
+        }
+
+        @property --tw-blur {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-brightness {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-contrast {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-grayscale {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-hue-rotate {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-invert {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-opacity {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-saturate {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-sepia {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-drop-shadow {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-blur {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-brightness {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-contrast {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-grayscale {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-hue-rotate {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-invert {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-opacity {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-saturate {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-backdrop-sepia {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-duration {
+            syntax: "*";
+            inherits: false
+        }
+
+        @property --tw-scale-x {
+            syntax: "*";
+            inherits: false;
+            initial-value: 1
+        }
+
+        @property --tw-scale-y {
+            syntax: "*";
+            inherits: false;
+            initial-value: 1
+        }
+
+        @property --tw-scale-z {
+            syntax: "*";
+            inherits: false;
+            initial-value: 1
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5
+            }
+        }
+
+        :root {
+            --primary: #00A0E3;
+            --primary-dark: #0085C7;
+            --primary-light: #E6F5FC;
+            --secondary: #FFC107;
+            --dark: #333333;
+            --gray: #666666;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --success: #4CAF50;
+            --error: #F44336;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+        }
+
+        /* Новые стили для изображений вместо фонов */
+        .monument-part {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        /* Порядок z-index для правильного наложения */
+        #takai-part {
+            z-index: 10;
+        }
+
+        #sonai-part {
+            z-index: 20;
+        }
+
+        #paminklai-part {
+            z-index: 50;
+        }
+
+        #plokstes-part {
+            z-index: 40;
+        }
+
+        /* Стили для модальных окон и уведомлений */
+        .preview-modal,
+        .price-modal,
+        .confirmation-modal,
+        .full-preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preview-modal,
+        .full-preview-modal {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+        .price-modal,
+        .confirmation-modal {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status-success {
+            background-color: rgba(76, 175, 80, 0.15);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-error {
+            background-color: rgba(244, 67, 54, 0.15);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        /* Gallery grid styles */
+        .preview-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 5 колонок по умолчанию */
+            gap: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .preview-gallery {
+                grid-template-columns: repeat(2, 1fr); /* 3 колонки на планшетах */
+            }
+        }
+
+        @media (max-width: 640px) {
+            .preview-gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки на мобильных */
+            }
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1/1; /* Сохраняем квадратную форму */
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .preview-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Fullscreen preview loader */
+        .full-preview-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            z-index: 1001;
+        }
+
+        /* Стили для кнопки полноэкранного режима */
+        .preview-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .preview-gallery .preview-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 5px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #downloadPreviewButton,
+        #fullscreenPreviewButton {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 20px;
+        }
+
+        #downloadPreviewButton:hover,
+        #fullscreenPreviewButton:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-fullscreen:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Стили для плашек */
+        .detail-badge {
+            position: relative;
+            z-index: 200;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            max-width: 300px;
+            width: auto;
+        }
+
+        .detail-badge h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.25rem;
+        }
+
+        .dimension-details,
+        .price-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .dimension-row,
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.15rem 0;
+        }
+
+        .dimension-label,
+        .price-label {
+            font-weight: 500;
+        }
+
+        .dimension-value,
+        .price-value {
+            font-weight: 700;
+            text-align: right;
+            min-width: 80px;
+        }
+
+        .dimension-divider,
+        .price-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0.25rem 0;
+        }
+
+        /* Новый контейнер для плашек и кнопок */
+        .info-panel-container {
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            gap: 15px;
+            pointer-events: none;
+        }
+
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 75%;
+        }
+
+        .button-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: auto;
+            min-width: 200px;
+            align-items: flex-end;
+        }
+
+        .custom-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            pointer-events: auto;
+        }
+
+        .custom-button.upper {
+            background-color: #00A0E3;
+            color: white;
+        }
+
+        .custom-button.lower {
+            background-color: #FFC107;
+            color: #333;
+        }
+
+        .custom-button.lower-lower {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .custom-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .custom-button.upper:hover {
+            background-color: #0085C7;
+        }
+
+        .custom-button.lower:hover {
+            background-color: #ffca28;
+        }
+
+        .custom-button.lower-lower:hover {
+            background-color: #45a049;
+        }
+
+        .button-icon {
+            margin-right: 8px;
+        }
+
+        .type-button.active {
+            background-color: var(--color-blue-600);
+            color: white;
+        }
+        .dropdown-content {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.dropdown-content:not(.hidden) {
+    max-height: 10000000px;
+    opacity: 1;
+    padding: 10px 0;
+}
+
+.arrow-icon i {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-header:hover {
+    background-color: var(--color-gray-100);
+}
+
+        /* Логотипы */
+        .logo-container img, .preview-logo img {
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container, .preview-logo {
+                display: none;
+            }
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 1024px) {
+            .info-panel-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .info-panel {
+                max-width: 100%;
+                order: 2;
+            }
+            
+            .button-panel {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                order: 1;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .info-panel .detail-badge:not(.total-price-badge) {
+                display: none;
+            }
+            
+            .button-panel {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-panel .total-price-badge {
+                position: fixed;
+                bottom: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+                z-index: 400;
+                text-align: center;
+                padding: 8px;
+            }
+            
+            .preview-controls {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+
+            #downloadPreviewButton,
+            #fullscreenPreviewButton {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            /* Исправления для скролла */
+            .main-container {
+                flex-direction: column;
+                min-height: 100vh;
+                height: auto;
+            }
+            
+            .visualization-section {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .controls-section {
+                max-height: 50vh;
+                overflow-y: auto;
+                padding-top: 15px;
+                padding-bottom: 80px;
+            }
+            
+            .p-4 {
+                padding: 1rem !important;
+            }
+        }
+
+        .hidden-by-flag {
+            display: none !important;
+        }
+        
+        .absolute.top-40.md\:top-30 {
+    top: 4rem; /* Было 10rem (40) - уменьшаем до 2rem */
+}
+
+@media (min-width: 768px) {
+    .md\:top-30 {
+        top: 1.5rem; /* Было 7.5rem (30) - уменьшаем до 1.5rem */
+    }
+}
+
+        /* Основные исправления для скролла */
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .visualization-section {
+            height: 50vh;
+            min-height: 300px;
+        }
+
+        .controls-section {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 1024px) {
+            .main-container {
+                flex-direction: row;
+            }
+            
+            .visualization-section {
+                height: 90vh;
+            }
+            
+            .controls-section {
+                height: 90vh;
+            }
+        }
+        .preview-logo img {
+    max-height: 60px;
+    object-fit: contain;
+}
+    </style>
+</head>
+<body>
+    <div id="statusMessage" class="status-message"></div>
+    <div class="info-panel-container">
+        <div class="info-panel">
+            <div class="detail-badge">
+                <h2>2D vizualizacija</h2>
+                <p class="text-xs sm:text-sm md:text-base text-gray-200">Suplanuokite kapavietę pasirinkdami variantus apačioje. Baigę, spustelėkite „Pateikti užklausą“ – susisieksime su Jumis per 24 valandas.</p>
+            </div>
+
+            <div class="detail-badge hidden" id="dimensionsContainer">
+                <div class="dimension-details">
+                    <div class="dimension-row">
+                        <span class="dimension-label">Paminklas:</span>
+                        <span class="dimension-value" id="dimensions-top">-</span>
+                    </div>
+                    <div class="dimension-row">
+                        <span class="dimension-label">Šonai:</span>
+                        <span class="dimension-value" id="dimensions-sides">-</span>
+                    </div>
+                    <div class="dimension-row">
+                        <span class="dimension-label">Takai:</span>
+                        <span class="dimension-value" id="dimensions-path">-</span>
+                    </div>
+                    <div class="dimension-row">
+                        <span class="dimension-label">Plokštė:</span>
+                        <span class="dimension-value" id="dimensions-base">-</span>
+                    </div>
+                    <div class="dimension-row">
+                        <span class="dimension-label">Priedai:</span>
+                        <span class="dimension-value" id="dimensions-accessories">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-badge hidden" id="pricesContainer">
+                <div class="price-details">
+                    <div class="price-row">
+                        <span class="price-label">Paminklas:</span>
+                        <span class="price-value" id="price-top">-</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Šonai:</span>
+                        <span class="price-value" id="price-sides">-</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Takai:</span>
+                        <span class="price-value" id="price-path">-</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Plokštė:</span>
+                        <span class="price-value" id="price-base">-</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Priedai:</span>
+                        <span class="price-value" id="price-accessories">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+
+        <div class="button-panel">
+            {% if show_upper_button and title_for_upper_button and url_for_upper_button %}
+            <a href="{{ url_for_upper_button }}" class="custom-button upper" target="_blank">
+                {% if "katalog" in title_for_upper_button|lower %}
+                <i class="button-icon fas fa-book"></i>
+                {% elif "instagram" in title_for_upper_button|lower %}
+                <i class="button-icon fab fa-instagram"></i>
+                {% elif "facebook" in title_for_upper_button|lower %}
+                <i class="button-icon fab fa-facebook"></i>
+                {% endif %}
+                {{ title_for_upper_button }}
+            </a>
+            {% endif %}
+
+            {% if show_lower_button and title_for_lower_button and url_for_lower_button %}
+            <a href='{{ url_for_lower_button }}' class="custom-button lower" target="_blank">
+                {% if "katalog" in title_for_lower_button|lower %}
+                <i class="button-icon fas fa-book"></i>
+                {% elif "instagram" in title_for_lower_button|lower %}
+                <i class="button-icon fab fa-instagram"></i>
+                {% elif "facebook" in title_for_lower_button|lower %}
+                <i class="button-icon fab fa-facebook"></i>
+                {% elif "informac" in title_for_lower_button|lower %}
+                <i class="button-icon fas fa-info-circle"></i>
+                {% endif %}
+                {{ title_for_lower_button }}
+            </a>
+            {% endif %}
+
+            {% if show_lower_lower_button and title_for_lower_lower_button and url_for_lower_lower_button %}
+            <a href="{{ url_for_lower_lower_button }}" class="custom-button lower-lower" target="_blank">
+                {% if "katalog" in title_for_lower_lower_button|lower %}
+                <i class="button-icon fas fa-book"></i>
+                {% elif "instagram" in title_for_lower_lower_button|lower %}
+                <i class="button-icon fab fa-instagram"></i>
+                {% elif "facebook" in title_for_lower_lower_button|lower %}
+                <i class="button-icon fab fa-facebook"></i>
+                {% endif %}
+                {{ title_for_lower_lower_button }}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-container flex flex-col lg:flex-row justify-center items-center w-full min-h-screen space-y-4 lg:space-y-0">
+        <!-- Секция визуализации -->
+        <div class="visualization-section w-full lg:w-[55%] flex justify-center items-center p-4">
+            <div class="relative w-full h-full rounded-[20px] p-4">
+                
+
+                <div class="preview-controls">
+                    <button id="downloadPreviewButton" title="Atsisiųsti" class="sm:flex">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button id="fullscreenPreviewButton" title="Pilno ekrano režimas" class="sm:flex">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+
+                <div class="absolute top-8 md:top-6 w-full h-full min-h-[300px] flex items-center justify-center bg-white">
+                    <div class="monument-base relative w-full h-full">
+                        {% if show_logo_on_preview and logo %}
+                        <img style="object-position: center; transform: scale(0.25); opacity: 0.4; z-index: 60; position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%) scale(0.15);" 
+                             src="{{ logo }}" alt="Logo" class="monument-part">
+                        {% endif %}
+                        <img id="takai-part" class="monument-part" 
+                             src="{{ photos.Takai|default_if_none:'' }}" 
+                             alt="Takai"
+                             style="{% if not photos.Takai %}display: none;{% endif %}">
+                        
+                        <img id="sonai-part" class="monument-part" 
+                             src="{{ photos.Sonai|default_if_none:'' }}" 
+                             alt="Šonai"
+                             style="{% if not photos.Sonai %}display: none;{% endif %}">
+                        
+                        <img id="plokstes-part" class="monument-part" 
+                             src="{{ photos.Plokstes|default_if_none:'' }}" 
+                             alt="Plokštės"
+                             style="{% if not photos.Plokstes %}display: none;{% endif %}">
+                        
+                        <img id="paminklai-part" class="monument-part" 
+                             src="{{ photos.Paminklai|default_if_none:'' }}" 
+                             alt="Paminklai"
+                             style="{% if not photos.Paminklai %}display: none;{% endif %}">
+                        
+                        <img id="priedai-part" class="monument-part" src="" alt="Priedai" style="display: none;">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция управления -->
+        <div style = "
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+"class="controls-section w-full lg:w-[40%] flex justify-center items-start p-4 relative z-100">
+            {% if show_logo_on_main_page and logo %}
+        <div class="logo-container flex justify-center items-center mx-4">
+            <img src="{{ logo }}" alt="Logo" class="max-h-16">
+        </div>
+        {% endif %}
+            <div class="p-6 bg-white text-black flex flex-col shadow-lg rounded-2xl">
+
+                <div class="flex space-x-2 mb-6" style="gap: 10px;
+    display: grid
+;
+    grid-template-columns: repeat(5, 1fr);">
+                    {% for i in items %}
+                    <button
+                        class="type-button px-5 py-2 rounded-2xl font-semibold shadow transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        data-type="{{i}}">{{i}}</button>
+                    {% endfor %}
+                </div>
+
+                <div class="controls-grid">
+                    <div class="dropdown-group">
+                        <div class="dropdown-header flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-100"
+                            data-group="paminklai">
+                            <h3 class="group-title">Paminklai</h3>
+                            <span class="arrow-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-content hidden" id="paminklai-content">
+                            <select class="component-select w-full p-2 border rounded mb-2" id="paminklai-select"
+                                data-specification="Paminklai">
+                                <option value="">Pasirinkite paminklą...</option>
+                            </select>
+                            <div style="    grid-template-columns: repeat(2, 1fr);" class="preview-gallery" id="paminklai-gallery"></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-group">
+                        <div class="dropdown-header flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-100"
+                            data-group="sonai">
+                            <h3 class="group-title">Šonai</h3>
+                            <span class="arrow-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-content hidden" id="sonai-content">
+                            <select class="component-select w-full p-2 border rounded mb-2" id="sonai-select"
+                                data-specification="Sonai">
+                                <option value="">Pasirinkite šonus...</option>
+                            </select>
+                            <div class="preview-gallery" id="sonai-gallery"></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-group">
+                        <div class="dropdown-header flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-100"
+                            data-group="takai">
+                            <h3 class="group-title">Takai</h3>
+                            <span class="arrow-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-content hidden" id="takai-content">
+                            <select class="component-select w-full p-2 border rounded mb-2" id="takai-select"
+                                data-specification="Takai">
+                                <option value="">Pasirinkite takus...</option>
+                            </select>
+                            <div class="preview-gallery" id="takai-gallery"></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-group">
+                        <div class="dropdown-header flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-100"
+                            data-group="plokstes">
+                            <h3 class="group-title">Plokštė</h3>
+                            <span class="arrow-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-content hidden" id="plokstes-content">
+                            <select class="component-select w-full p-2 border rounded mb-2" id="plokstes-select"
+                                data-specification="Plokstes">
+                                <option value="">Pasirinkite plokštę...</option>
+                            </select>
+                            <div class="preview-gallery" id="plokstes-gallery"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-group">
+                        <div class="dropdown-header flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-100"
+                            data-group="priedai">
+                            <h3 class="group-title">Priedai</h3>
+                            <span class="arrow-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-content hidden" id="priedai-content">
+                            <select class="component-select w-full p-2 border rounded mb-2" id="priedai-select"
+                                data-specification="Priedai">
+                                <option value="">Pasirinkite priedus...</option>
+                            </select>
+                            <div class="preview-gallery" id="priedai-gallery"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="px-5 py-2 rounded-2xl font-semibold shadow transition-colors duration-200 bg-blue-600 text-white"
+                    id="priceButton">
+                    <i class="fas fa-tag mr-2"></i> Sužinoti kainą
+                </button>
+                <div class="text-black text-lg font-semibold mt-6 text-right" id="totalPriceDisplayContainer">
+                    Bendra kaina: <span id="total-price-display">0.00 EUR</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div class="preview-modal" id="previewModal">
+        <span class="close-preview-modal absolute top-6 right-8 text-white text-4xl cursor-pointer">&times;</span>
+        <div class="modal-content flex flex-col items-center">
+            <h2 id="modalTitle" class="text-xl font-bold mb-4 text-white"></h2>
+            <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain" src="" alt="Preview">
+            <div class="navigation-controls flex justify-between w-full mt-4 px-8">
+                <button class="prev-arrow p-2 bg-black/60 rounded-full text-white">
+                    <i class="fas fa-chevron-left text-2xl"></i>
+                </button>
+                <button class="next-arrow p-2 bg-black/60 rounded-full text-white">
+                    <i class="fas fa-chevron-right text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-preview-modal" id="fullPreviewModal">
+        <button class="close-fullscreen" id="closeFullPreview">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content flex justify-center items-center h-full w-full">
+            <div class="full-preview-loader" id="previewLoader">
+                <i class="fas fa-spinner fa-spin"></i> Kraunama...
+            </div>
+            <img id="fullPreviewImage" class="max-w-[90vw] max-h-[90vh] object-contain" src="" alt="Visas paminklas"
+                style="display: none;">
+        </div>
+    </div>
+
+    <div class="price-modal" id="priceModal">
+        <span class="close-price-modal absolute top-6 right-8 text-white text-4xl cursor-pointer">&times;</span>
+        <div class="price-form-container bg-white rounded-xl p-6 max-w-md w-[90%]">
+            <h2 class="form-title text-2xl font-bold mb-6 text-center">
+                <i class="fas fa-tag mr-2 text-blue-500"></i> Sužinoti paminklo kainą
+            </h2>
+            <form id="priceForm">
+                <div class="price-form-group mb-4">
+                    <label for="name" class="block mb-2 font-medium">Vardas *</label>
+                    <input type="text" id="name" name="name" required placeholder="Jūsų vardas"
+                        class="w-full p-3 border rounded">
+                </div>
+
+                <div class="price-form-group mb-4">
+                    <label for="phone" class="block mb-2 font-medium">Telefonas *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Jūsų telefono numeris"
+                        class="w-full p-3 border rounded">
+                </div>
+
+                <div class="price-form-group mb-4">
+                    <label for="location" class="block mb-2 font-medium">Kapinių vieta (adresas) *</label>
+                    <input type="text" id="location" name="location" required placeholder="Kapinių adresas"
+                        class="w-full p-3 border rounded">
+                </div>
+
+                <div class="price-form-group mb-6">
+                    <label for="message" class="block mb-2 font-medium">Papildoma informacija</label>
+                    <textarea id="message" name="message" placeholder="Papildomi klausimai ar pastabos..."
+                        class="w-full p-3 border rounded min-h-[120px]"></textarea>
+                </div>
+
+                <button type="submit" id="submit-button-to-send"
+                    class="submit-button w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition">
+                    <i class="fas fa-paper-plane mr-2"></i> Pateikti užklausą
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-content bg-white rounded-xl p-8 text-center max-w-md">
+            <div class="confirmation-icon text-6xl text-green-500 mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="confirmation-text text-xl font-bold mb-6" id="confirmationMessage">Konfigūracija sėkmingai
+                išsiųsta!</h2>
+            <button
+                class="confirmation-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition"
+                id="closeConfirmation">Gerai</button>
+        </div>
+    </div>
+
+    <script>
+(function () {
+    emailjs.init('F4Pl7rQvg4bT01FFI');
+    
+    // Глобальный объект для хранения активных контроллеров
+    const activeControllers = {
+        paminklai: null,
+        sonai: null,
+        takai: null,
+        plokstes: null,
+        priedai: null,
+    };
+
+    // Функция для отмены активных запросов
+    function cancelActiveRequests() {
+        Object.values(activeControllers).forEach(controller => {
+            if (controller) controller.abort();
+        });
+        
+        // Сбрасываем контроллеры
+        activeControllers.paminklai = null;
+        activeControllers.sonai = null;
+        activeControllers.takai = null;
+        activeControllers.plokstes = null;
+        activeControllers.priedai = null;
+    }
+
+    // Флаги управления из Django
+    const showPrices = {% if show_prices %}true{% else %}false{% endif %};
+    const showDimensions = {% if show_dimensions %}true{% else %}false{% endif %};
+    const showUpperButton = {% if show_upper_button %}true{% else %}false{% endif %};
+    const showLowerButton = {% if show_lower_button %}true{% else %}false{% endif %};
+    const showLowerLowerButton = {% if show_lower_lower_button %}true{% else %}false{% endif %};
+    const showLogoOnMainPage = {% if show_logo_on_main_page %}true{% else %}false{% endif %};
+    const showLogoOnPreview = {% if show_logo_on_preview %}true{% else %}false{% endif %};
+    const titleForUpperButton = "{{ title_for_upper_button }}";
+    const urlForUpperButton = "{{ url_for_upper_button }}";
+    const titleForLowerButton = "{{ title_for_lower_button }}";
+    const urlForLowerButton = "{{ url_for_lower_button }}";
+    const titleForLowerLowerButton = "{{ title_for_lower_lower_button }}";
+    const urlForLowerLowerButton = "{{ url_for_lower_lower_button }}";
+
+    // Текущие выборы пользователя
+    const selections = {
+        type: 'Didesnė',
+        paminklai: null,
+        sonai: null,
+        takai: null,
+        plokstes: null,
+        priedai: null,
+    };
+
+    // Кэш данных компонентов
+    const componentCache = {
+        dimensions: {},
+        prices: {}
+    };
+
+    // DOM Elements
+    const typeOptions = document.querySelectorAll('[data-type]');
+    const componentSelects = document.querySelectorAll('.component-select');
+    const statusMessage = document.getElementById('statusMessage');
+    const monumentParts = {
+        paminklai: document.getElementById('paminklai-part'),
+        sonai: document.getElementById('sonai-part'),
+        takai: document.getElementById('takai-part'),
+        plokstes: document.getElementById('plokstes-part'),
+        priedai: document.getElementById('priedai-part')
+    };
+
+    // Получение URL логотипа из Django
+    const watermarkLogoUrl = "{{ logo }}";
+    const email_to_send = "{{ email }}";
+
+    const priceButton = document.getElementById('priceButton');
+    const priceModal = document.getElementById('priceModal');
+    const priceForm = document.getElementById('priceForm');
+    const closePriceModal = document.querySelector('.close-price-modal');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const closeConfirmation = document.getElementById('closeConfirmation');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const previewModal = document.getElementById('previewModal');
+    const fullPreviewModal = document.getElementById('fullPreviewModal');
+    const fullPreviewImage = document.getElementById('fullPreviewImage');
+    const previewLoader = document.getElementById('previewLoader');
+    const closeFullPreview = document.getElementById('closeFullPreview');
+    const fullscreenButton = document.getElementById('fullscreenPreviewButton');
+    const downloadButton = document.getElementById('downloadPreviewButton');
+
+    // Функция для добавления водяного знака
+    function addWatermark(canvas, logoUrl) {
+        return new Promise((resolve) => {
+            if (!logoUrl || logoUrl.trim() === "") {
+                resolve(canvas);
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            const logo = new Image();
+            let loaded = false;
+
+            const absoluteLogoUrl = logoUrl.startsWith('http') ?
+                logoUrl :
+                window.location.origin + logoUrl;
+
+            logo.crossOrigin = "Anonymous";
+            logo.src = absoluteLogoUrl + "?t=" + new Date().getTime();
+
+            logo.onload = () => {
+                loaded = true;
+                try {
+                    const logoSize = Math.min(canvas.width, canvas.height) * 0.05;
+                    let logoWidth = logoSize;
+                    let logoHeight = logoSize * (logo.height / logo.width);
+
+                    if (logoHeight > logoSize) {
+                        const scale = logoSize / logoHeight;
+                        logoWidth = logoWidth * scale;
+                        logoHeight = logoHeight * scale;
+                    }
+
+                    const angle = 45 * Math.PI / 180;
+                    const stepX = canvas.width * 0.15;
+                    const stepY = canvas.height * 0.15;
+
+                    ctx.save();
+                    ctx.globalAlpha = 0.2;
+
+                    for (let x = -stepX; x < canvas.width + stepX; x += stepX) {
+                        for (let y = -stepY; y < canvas.height + stepY; y += stepY) {
+                            const shiftX = (Math.floor(y / stepY) % 2) * (stepX / 2);
+                            const currentX = x + shiftX;
+
+                            ctx.save();
+                            ctx.translate(currentX, y);
+                            ctx.rotate(angle);
+                            ctx.drawImage(logo, -logoWidth / 2, -logoHeight / 2, logoWidth, logoHeight);
+                            ctx.restore();
+                        }
+                    }
+
+                    ctx.restore();
+                } catch (e) {
+                    console.error("Ошибка при отрисовке водяных знаков:", e);
+                }
+                resolve(canvas);
+            };
+
+            logo.onerror = () => {
+                loaded = true;
+                resolve(canvas);
+            };
+
+            setTimeout(() => {
+                if (!loaded) resolve(canvas);
+            }, 5000);
+        });
+    }
+
+    // Функция для генерации изображения превью с оптимизацией
+    async function generatePreviewImage() {
+        try {
+            const previewElement = document.querySelector('.monument-base');
+            const scale = Math.min(window.devicePixelRatio, 2);
+
+            const canvas = await html2canvas(previewElement, {
+                useCORS: true,
+                scale: scale,
+                logging: false,
+                backgroundColor: '#fff',
+                allowTaint: true,
+                width: previewElement.offsetWidth,
+                height: previewElement.offsetHeight
+            });
+
+            // Добавляем водяной знак
+            await addWatermark(canvas, watermarkLogoUrl);
+
+            return canvas.toDataURL('image/jpeg', 0.8);
+        } catch (error) {
+            console.error('Klaida generuojant peržiūrą:', error);
+            return '';
+        }
+    }
+    // Функция для автоматического выбора первого доступного компонента
+    function selectFirstAvailableItem(items, specification) {
+        if (items.length > 0) {
+            const firstItem = items[0];
+            selections[specification.toLowerCase()] = firstItem.id;
+
+            const select = document.getElementById(`${specification.toLowerCase()}-select`);
+            if (select) {
+                select.value = firstItem.id;
+            }
+
+            const gallery = document.getElementById(`${specification.toLowerCase()}-gallery`);
+            if (gallery) {
+                const firstThumb = gallery.querySelector('.preview-item');
+                if (firstThumb) {
+                    firstThumb.classList.add('active', 'border-blue-500');
+                }
+            }
+
+            updatePreview(specification);
+            return true;
+        }
+        return false;
+    }
+
+    // Функция для показа сообщения
+    function showMessage(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = `status-message status-${type}`;
+        statusMessage.style.display = 'block';
+
+        setTimeout(() => {
+            statusMessage.style.display = 'none';
+        }, 5000);
+    }
+
+    // Функция для полного сброса превью и данных
+    function resetAllPreviews() {
+        // Сбрасываем текущие выборы
+        selections.paminklai = null;
+        selections.sonai = null;
+        selections.takai = null;
+        selections.plokstes = null;
+        selections.priedai = null;
+
+        // Сбрасываем кэш
+        componentCache.dimensions = {};
+        componentCache.prices = {};
+
+        // Сбрасываем отображение превью
+        Object.values(monumentParts).forEach(part => {
+            if (part) {
+                part.src = '';
+                part.style.display = 'none';
+            }
+        });
+
+        componentSelects.forEach(select => {
+            select.value = '';
+        });
+
+        const galleries = document.querySelectorAll('.preview-gallery');
+        galleries.forEach(gallery => {
+            const items = gallery.querySelectorAll('.preview-item');
+            items.forEach(item => {
+                item.classList.remove('active', 'border-blue-500');
+            });
+        });
+
+        // Сбрасываем значения в плашках
+        if (showDimensions) {
+            document.getElementById('dimensions-top').textContent = '-';
+            document.getElementById('dimensions-sides').textContent = '-';
+            document.getElementById('dimensions-path').textContent = '-';
+            document.getElementById('dimensions-base').textContent = '-';
+            document.getElementById('dimensions-accessories').textContent = '-';
+        }
+
+        if (showPrices) {
+            document.getElementById('price-top').textContent = '-';
+            document.getElementById('price-sides').textContent = '-';
+            document.getElementById('price-path').textContent = '-';
+            document.getElementById('price-base').textContent = '-';
+            document.getElementById('price-accessories').textContent = '-';
+            document.getElementById('total-price-display').textContent = '0.00 EUR';
+        }
+    }
+
+    // Загрузка компонентов с сервера
+    async function loadComponents(specification, selectFirst = false) {
+        const gallery = document.getElementById(`${specification.toLowerCase()}-gallery`);
+        const select = document.getElementById(`${specification.toLowerCase()}-select`);
+        const content = document.getElementById(`${specification.toLowerCase()}-content`);
+
+        if (!gallery || !select) return;
+
+        gallery.innerHTML = '<div class="loader mx-auto my-4"></div>';
+        select.innerHTML = '<option value="">Kraunama...</option>';
+        select.disabled = true;
+
+        try {
+            const response = await fetch(`/v1/components/?type=${selections.type}&specification=${specification}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const items = await response.json();
+
+            populateSelect(specification, items);
+            populateGallery(specification, items);
+
+            // Только если нужно выбрать первый элемент и есть элементы
+            if (selectFirst && items.length > 0) {
+                selectFirstAvailableItem(items, specification);
+            }
+
+        } catch (error) {
+            console.error('Error loading components:', error);
+            gallery.innerHTML = '<div class="text-center py-4 text-red-500"><i class="fas fa-exclamation-triangle mr-2"></i>Klaida</div>';
+            select.innerHTML = '<option value="">Įvyko klaida</option>';
+            showMessage(`Klaida įkeliant ${specification.toLowerCase()} komponentus: ${error.message}`, 'error');
+        } finally {
+            select.disabled = false;
+        }
+    }
+
+    // Заполнение выпадающего списка
+    function populateSelect(specification, items) {
+        const select = document.getElementById(`${specification.toLowerCase()}-select`);
+        if (!select) return;
+        
+        select.innerHTML = '<option value="">Pasirinkite...</option>';
+        
+        items.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name;
+            select.appendChild(option);
+        });
+
+        if (selections[specification.toLowerCase()]) {
+            select.value = selections[specification.toLowerCase()];
+        }
+    }
+
+    // Заполнение галереи миниатюр
+    function populateGallery(specification, items) {
+        const gallery = document.getElementById(`${specification.toLowerCase()}-gallery`);
+        if (!gallery) return;
+        
+        gallery.innerHTML = '';
+
+        if (items.length === 0) {
+            gallery.innerHTML = '<p class="text-center py-2">Nėra prieinamų komponentų</p>';
+            return;
+        }
+
+        items.forEach(item => {
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item border-2 border-transparent rounded-md overflow-hidden cursor-pointer relative transition hover:border-blue-500';
+            previewItem.dataset.id = item.id;
+            previewItem.dataset.image = item.image_url;
+            previewItem.dataset.name = item.name;
+
+            // Сохраняем данные в кэш (с преобразованием в числа)
+            if (showDimensions && item.width && item.height && item.depth) {
+                componentCache.dimensions[item.id] = {
+                    width: parseFloat(item.width),
+                    height: parseFloat(item.height),
+                    depth: parseFloat(item.depth)
+                };
+            }
+
+            if (showPrices && item.price) {
+                componentCache.prices[item.id] = parseFloat(item.price);
+            }
+
+            const img = document.createElement('img');
+            img.src = '/' + item.image_url;
+            img.alt = item.name;
+            img.className = 'w-full h-full object-cover';
+            img.loading = "lazy";
+            
+            // Для изображений Paminklai устанавливаем высоту 150%
+            if (specification == 'Paminklai') {
+                img.style.height = '100%';
+            } else {
+                img.style.height = '100%';
+            }
+
+            const label = document.createElement('div');
+            label.className = 'preview-label absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-1 truncate';
+            label.textContent = item.name;
+
+            previewItem.appendChild(img);
+            previewItem.appendChild(label);
+            gallery.appendChild(previewItem);
+
+            // Обработчик для выбора компонента
+            previewItem.addEventListener('click', function () {
+                const select = document.getElementById(`${specification.toLowerCase()}-select`);
+                if (select) {
+                    select.value = item.id;
+                }
+
+                selections[specification.toLowerCase()] = item.id;
+                updatePreview(specification);
+
+                document.querySelectorAll(`#${specification.toLowerCase()}-gallery .preview-item`).forEach(el => {
+                    el.classList.remove('active', 'border-blue-500');
+                });
+                this.classList.add('active', 'border-blue-500');
+
+                updateAllBadges();
+            });
+
+        });
+
+        if (selections[specification.toLowerCase()]) {
+            const activeThumb = gallery.querySelector(`.preview-item[data-id="${selections[specification.toLowerCase()]}"]`);
+            if (activeThumb) {
+                activeThumb.classList.add('active', 'border-blue-500');
+            }
+        }
+    }
+
+    // Обновление превью
+    async function updatePreview(specification) {
+        const specKey = specification.toLowerCase();
+        const value = selections[specKey];
+        const part = monumentParts[specKey];
+
+        // Отменяем предыдущий запрос для этой спецификации
+        if (activeControllers[specKey]) {
+            activeControllers[specKey].abort();
+            activeControllers[specKey] = null;
+        }
+
+        if (!value || !part) {
+            if (part) {
+                part.src = '';
+                part.style.display = 'none';
+            }
+            return;
+        }
+
+        try {
+            // Создаем новый контроллер для текущего запроса
+            const controller = new AbortController();
+            activeControllers[specKey] = controller;
+
+            // Всегда загружаем изображение через API
+            const response = await fetch(`/v1/component-image/?id=${value}`, {
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            // Проверяем актуальность запроса
+            if (selections[specKey] === value && part) {
+                // Добавляем параметр времени для предотвращения кеширования
+                part.src = data.image_url + "?t=" + new Date().getTime();
+                part.style.display = 'block';
+            }
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Запрос отменен:', specification);
+            } else {
+                console.error('Error loading image:', error);
+                if (part) {
+                    part.src = '';
+                    part.style.display = 'none';
+                }
+                showMessage(`Klaida įkeliant vaizdą: ${error.message}`, 'error');
+            }
+        }
+    }
+
+    // Обновление компонентов при смене типа
+    async function updateComponentSelects(selectFirst = false) {
+        // Отменяем все активные запросы
+        cancelActiveRequests();
+        
+        const specifications = ['Paminklai', 'Sonai', 'Takai', 'Plokstes', 'Priedai'];
+        
+        // Последовательно загружаем компоненты для каждой спецификации
+        for (const spec of specifications) {
+            await loadComponents(spec, selectFirst);
+        }
+    }
+
+    // Обновление плашки размеров
+    function updateDimensionBadge(spec, elementId) {
+        if (!showDimensions) return;
+
+        const componentId = selections[spec];
+        const element = document.getElementById(elementId);
+
+        if (componentId && componentCache.dimensions[componentId] && element) {
+            const dim = componentCache.dimensions[componentId];
+            element.textContent = `${dim.width}×${dim.height}×${dim.depth} cm`;
+        } else if (element) {
+            element.textContent = '-';
+        }
+    }
+
+    // Обновление плашки цен
+    function updatePriceBadge(spec, elementId) {
+        if (!showPrices) return;
+
+        const componentId = selections[spec];
+        const element = document.getElementById(elementId);
+
+        if (componentId && componentCache.prices[componentId] && element) {
+            const price = componentCache.prices[componentId];
+            element.textContent = `${price.toFixed(2)} EUR`;
+        } else if (element) {
+            element.textContent = '-';
+        }
+    }
+
+    // Обновление общей стоимости
+    function updateTotalPrice() {
+        if (!showPrices) {
+            const display = document.getElementById('total-price-display');
+            if (display) display.textContent = '';
+            return;
+        }
+
+        let total = 0;
+        let isValid = true;
+
+        // Суммируем цены всех выбранных компонентов
+        const components = ['paminklai', 'sonai', 'takai', 'plokstes', 'priedai'];
+        components.forEach(key => {
+            const componentId = selections[key];
+            if (componentId && componentCache.prices[componentId]) {
+                const price = componentCache.prices[componentId];
+                if (typeof price === 'number') {
+                    total += price;
+                } else {
+                    isValid = false;
+                }
+            }
+        });
+
+        const display = document.getElementById('total-price-display');
+        if (display) {
+            if (isValid) {
+                display.textContent = `${total.toFixed(2)} EUR`;
+            } else {
+                display.textContent = 'Klaida';
+            }
+        }
+    }
+
+    // Обновление всех плашек
+    function updateAllBadges() {
+        // Размеры
+        if (showDimensions) {
+            updateDimensionBadge('paminklai', 'dimensions-top');
+            updateDimensionBadge('sonai', 'dimensions-sides');
+            updateDimensionBadge('takai', 'dimensions-path');
+            updateDimensionBadge('plokstes', 'dimensions-base');
+            updateDimensionBadge('priedai', 'dimensions-accessories');
+        }
+
+        // Цены
+        if (showPrices) {
+            updatePriceBadge('paminklai', 'price-top');
+            updatePriceBadge('sonai', 'price-sides');
+            updatePriceBadge('takai', 'price-path');
+            updatePriceBadge('plokstes', 'price-base');
+            updatePriceBadge('priedai', 'price-accessories');
+        }
+
+        // Общая стоимость
+        updateTotalPrice();
+    }
+
+    // Обновление кнопок
+    function updateButtons() {
+        // ... (без изменений) ...
+    }
+
+    // Обновление видимости элементов
+    function updateVisibility() {
+        // Плашка с размерами
+        const dimensionsContainer = document.getElementById('dimensionsContainer');
+        if (dimensionsContainer) {
+            if (showDimensions) {
+                dimensionsContainer.classList.remove('hidden');
+            } else {
+                dimensionsContainer.classList.add('hidden');
+            }
+        }
+
+        // Плашка с ценами
+        const pricesContainer = document.getElementById('pricesContainer');
+        if (pricesContainer) {
+            if (showPrices) {
+                pricesContainer.classList.remove('hidden');
+            } else {
+                pricesContainer.classList.add('hidden');
+            }
+        }
+
+        // Отображение общей цены
+        const totalPriceContainer = document.getElementById('totalPriceDisplayContainer');
+        if (totalPriceContainer) {
+            if (showPrices) {
+                totalPriceContainer.classList.remove('hidden');
+            } else {
+                totalPriceContainer.classList.add('hidden');
+            }
+        }
+    }
+
+    // Инициализация приложения
+    async function initApp() {
+        // Обновляем видимость элементов
+        updateVisibility();
+
+        // Устанавливаем активный тип на кнопках
+        typeOptions.forEach(option => {
+            option.classList.remove('bg-blue-600', 'text-white');
+            option.classList.add('bg-gray-100', 'text-gray-700');
+            if (option.dataset.type === selections.type) {
+                option.classList.add('bg-blue-600', 'text-white');
+                option.classList.remove('bg-gray-100', 'text-gray-700');
+            }
+        });
+
+        // Загружаем компоненты из базы данных с выбором первого элемента
+        await updateComponentSelects(true);
+
+        // Обновляем все плашки
+        updateAllBadges();
+
+        // Обработчики для кнопок типа
+        typeOptions.forEach(option => {
+            option.addEventListener('click', async function () {
+                const type = this.dataset.type;
+
+                if (selections.type === type) return;
+
+                // Отменяем все активные запросы
+                cancelActiveRequests();
+                
+                // Сбрасываем все предыдущие выборы
+                resetAllPreviews();
+                
+                selections.type = type;
+
+                typeOptions.forEach(opt => {
+                    opt.classList.remove('bg-blue-600', 'text-white');
+                    opt.classList.add('bg-gray-100', 'text-gray-700');
+                });
+                this.classList.remove('bg-gray-100', 'text-gray-700');
+                this.classList.add('bg-blue-600', 'text-white');
+
+                // Перезагружаем все компоненты
+                await updateComponentSelects(false);
+            });
+        });
+
+        // Обработчики для выпадающих списков
+        componentSelects.forEach(select => {
+            select.addEventListener('change', function () {
+                const specification = this.dataset.specification;
+                const value = this.value;
+
+                selections[specification.toLowerCase()] = value;
+                updatePreview(specification);
+
+                document.querySelectorAll(`#${specification.toLowerCase()}-gallery .preview-item`).forEach(el => {
+                    el.classList.remove('active', 'border-blue-500');
+                });
+
+                const activeThumb = document.querySelector(`#${specification.toLowerCase()}-gallery .preview-item[data-id="${value}"]`);
+                if (activeThumb) {
+                    activeThumb.classList.add('active', 'border-blue-500');
+                }
+
+                updateAllBadges();
+            });
+        });
+
+        // Обработчик для кнопки полноэкранного режима
+        fullscreenButton.addEventListener('click', async function () {
+            if (window.innerWidth < 640) return;
+
+            try {
+                const previewElement = document.querySelector('.monument-base');
+                previewLoader.style.display = 'block';
+                fullPreviewImage.style.display = 'none';
+                fullPreviewModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+
+                const scale = Math.min(
+                    window.devicePixelRatio * 2,
+                    3
+                );
+
+                const canvas = await html2canvas(previewElement, {
+                    useCORS: true,
+                    scale: scale,
+                    logging: false,
+                    backgroundColor: '#fff',
+                    allowTaint: true,
+                    width: previewElement.offsetWidth,
+                    height: previewElement.offsetHeight,
+                    onclone: (clonedDoc) => {
+                        const parts = clonedDoc.querySelectorAll('.monument-part');
+                        parts.forEach(part => {
+                            part.style.imageRendering = 'crisp-edges';
+                        });
+                    }
+                });
+
+                canvas.style.width = `${previewElement.offsetWidth}px`;
+                canvas.style.height = `${previewElement.offsetHeight}px`;
+
+                fullPreviewImage.src = canvas.toDataURL('image/jpeg', 0.85);
+                previewLoader.style.display = 'none';
+                fullPreviewImage.style.display = 'block';
+
+            } catch (error) {
+                console.error('Klaida generuojant peržiūros paveikslėlį:', error);
+                previewLoader.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Klaida generuojant vaizdą';
+            }
+        });
+
+        // Обработчик для кнопки скачивания
+        downloadButton.addEventListener('click', async function () {
+            const button = this;
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+
+            try {
+                // Временно скрываем галереи миниатюр
+                const galleries = document.querySelectorAll('.preview-gallery');
+                galleries.forEach(g => g.style.visibility = 'hidden');
+
+                // Предзагружаем основные изображения
+
+                const previewElement = document.querySelector('.monument-base');
+                const scale = Math.min(window.devicePixelRatio * 2, 3);
+
+                const canvas = await html2canvas(previewElement, {
+                    useCORS: true,
+                    scale: scale,
+                    backgroundColor: "#fff",
+                    allowTaint: true,
+                    width: previewElement.offsetWidth,
+                    height: previewElement.offsetHeight,
+                    ignoreElements: (element) => {
+                        // Игнорируем элементы галереи
+                        return element.classList.contains('preview-gallery') || 
+                               element.classList.contains('preview-item');
+                    },
+                    onclone: (clonedDoc) => {
+                        const parts = clonedDoc.querySelectorAll('.monument-part');
+                        parts.forEach(part => {
+                            part.style.imageRendering = 'crisp-edges';
+                        });
+                    }
+                });
+
+                // Добавляем водяной знак
+                await addWatermark(canvas, watermarkLogoUrl);
+
+                const dataURL = canvas.toDataURL("image/jpeg", 0.8);
+                console.log(dataURL)
+                const link = document.createElement('a');
+                link.href = dataURL;
+                link.download = "paminklo-vizualizacija.jpg";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error("Ошибка при скачивании:", error);
+                showMessage("Klaida generuojant vaizdą. Bandykite dar kartą.", "error");
+            } finally {
+                // Восстанавливаем интерфейс
+                const galleries = document.querySelectorAll('.preview-gallery');
+                galleries.forEach(g => g.style.visibility = 'visible');
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+            }
+        });
+
+        // Закрытие полноэкранного режима при клике на крестик
+        closeFullPreview.addEventListener('click', function () {
+            fullPreviewModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Закрытие при клике вне изображения
+        fullPreviewModal.addEventListener('click', function (event) {
+            if (event.target === fullPreviewModal) {
+                fullPreviewModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Закрытие по клавише ESC
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && fullPreviewModal.style.display === 'flex') {
+                fullPreviewModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Закрытие модальных окон при клике вне их
+        window.addEventListener('click', function (event) {
+            if (event.target === priceModal) {
+                priceModal.style.display = 'none';
+            }
+            if (event.target === confirmationModal) {
+                confirmationModal.style.display = 'none';
+            }
+            if (event.target === previewModal) {
+                previewModal.style.display = 'none';
+            }
+            if (event.target === fullPreviewModal) {
+                fullPreviewModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Открытие модального окна запроса цены
+        priceButton.addEventListener('click', function () {
+            priceModal.style.display = 'flex';
+        });
+
+        // Обработчик формы запроса цены с оптимизацией изображения
+        document.getElementById('priceForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const submitButton = document.getElementById('submit-button-to-send');
+            const originalContent = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Siunčiama...';
+            submitButton.disabled = true;
+
+            try {
+                // Собираем данные формы
+                const formData = {
+                    from_name: this.name.value,
+                    phone: this.phone.value,
+                    location: this.location.value,
+                    email: email_to_send,
+                    message: this.message.value || 'Nėra papildomos informacijos',
+                    configuration: getConfigurationText()
+                };
+
+                // Генерируем превью
+                let previewImage = await generatePreviewImage();
+
+                // Сжимаем изображение, если оно больше 30KB
+                if (previewImage.length > 30000) {
+                    previewImage = await compressImage(previewImage, 0.5);
+                }
+
+                // Проверяем размер после сжатия
+                if (previewImage.length < 45000) {
+                    formData.preview_image = previewImage;
+                } else {
+                    formData.message += "\n\n[Paminklo vaizdas nepridėtas dėl per didelio dydžio]";
+                }
+
+                // Проверяем общий размер данных
+                const totalSize = JSON.stringify(formData).length;
+                if (totalSize > 50000) {
+                    delete formData.preview_image;
+                    formData.message += "\n\n[Paminklo vaizdas pašalintas dėl duomenų apribojimų]";
+                }
+
+                // Отправка через EmailJS
+                const serviceID = 'service_jbu2wwo';
+                const templateID = 'template_vblsqn6';
+
+                await emailjs.send(serviceID, templateID, formData);
+
+                // Успешная отправка
+                showMessage('Užklausa sėkmingai išsiųsta! Atsakysime kuo skubiau.', 'success');
+                this.reset();
+                priceModal.style.display = 'none';
+                confirmationModal.style.display = 'flex';
+            } catch (err) {
+                console.error('Klaida:', err);
+
+                if (err.message && err.message.includes('Variables size limit')) {
+                    try {
+                        const formDataWithoutImage = {
+                            from_name: this.name.value,
+                            phone: this.phone.value,
+                            location: this.location.value,
+                            message: (this.message.value || 'Nėra papildomos informacijos') +
+                                "\n\n[Paminklo vaizdas nepridėtas dėl duomenų apribojimų]",
+                            configuration: getConfigurationText()
+                        };
+
+                        await emailjs.send(serviceID, templateID, formDataWithoutImage);
+                        showMessage('Užklausa išsiųsta! Paminklo vaizdas nepridėtas dėl dydžio apribojimų.', 'success');
+                        this.reset();
+                        priceModal.style.display = 'none';
+                        confirmationModal.style.display = 'flex';
+                    } catch (retryError) {
+                        console.error('Klaida bandant išsiųsti be vaizdo:', retryError);
+                        showMessage(`Siuntimo klaida: ${retryError.message || retryError}`, 'error');
+                    }
+                } else {
+                    showMessage(`Siuntimo klaida: ${err.message || err}`, 'error');
+                }
+            } finally {
+                submitButton.innerHTML = originalContent;
+                submitButton.disabled = false;
+            }
+        });
+
+        // Обработчики для аккордеона
+        document.querySelectorAll('.dropdown-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const group = this.dataset.group;
+                const content = document.getElementById(`${group}-content`);
+                content.classList.toggle('hidden');
+                const icon = this.querySelector('.arrow-icon i');
+                
+                // Переключение иконки
+                if (icon.classList.contains('fa-chevron-down')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    }
+
+    // Функция для сжатия и изменения размера изображения
+    async function compressImage(dataUrl, quality = 0.6) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.src = dataUrl;
+
+            img.onload = async () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Уменьшаем размер изображения
+                const maxWidth = 800;
+                const maxHeight = 600;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth || height > maxHeight) {
+                    const ratio = Math.min(maxWidth / width, maxHeight / height);
+                    width = width * ratio;
+                    height = height * ratio;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Добавляем водяной знак
+                await addWatermark(canvas, watermarkLogoUrl);
+
+                resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+
+            img.onerror = () => resolve(dataUrl);
+        });
+    }
+
+    // Упрощенная функция для получения описания конфигурации
+    function getConfigurationText() {
+        let configText = `Paminklo tipas: ${selections.type}\n`;
+
+        // Добавляем информацию о компонентах, если разрешены размеры
+        if (showDimensions) {
+            configText += `Paminklai: ${getComponentName('paminklai')}\n`;
+            configText += `Šonai: ${getComponentName('sonai')}\n`;
+            configText += `Takai: ${getComponentName('takai')}\n`;
+            configText += `Plokštė: ${getComponentName('plokstes')}\n`;
+            configText += `Priedai: ${getComponentName('priedai')}\n`;
+        }
+
+        // Добавляем информацию о ценах, если разрешены цены
+        if (showPrices) {
+            configText += `\nKainos:\n`;
+            configText += `Paminklai: ${document.getElementById('price-top')?.textContent || '-'}\n`;
+            configText += `Šonai: ${document.getElementById('price-sides')?.textContent || '-'}\n`;
+            configText += `Takai: ${document.getElementById('price-path')?.textContent || '-'}\n`;
+            configText += `Plokštė: ${document.getElementById('price-base')?.textContent || '-'}\n`;
+            configText += `Priedai: ${document.getElementById('price-accessories')?.textContent || '-'}\n`;
+            configText += `Bendra kaina: ${document.getElementById('total-price-display')?.textContent || '-'}\n`;
+        }
+
+        return configText;
+    }
+
+    // Функция для получения названия компонента
+    function getComponentName(type) {
+        const select = document.getElementById(`${type}-select`);
+        return select.options[select.selectedIndex]?.text || 'Nepasirinkta';
+    }
+
+    // Функция для открытия полноэкранного просмотра
+    function openFullscreenView(galleryType, itemId) {
+        const gallery = document.getElementById(`${galleryType}-gallery`);
+        const items = Array.from(gallery.querySelectorAll('.preview-item'));
+
+        currentGallery = galleryType;
+        currentItems = items;
+        currentIndex = items.findIndex(item => item.dataset.id === itemId);
+
+        if (currentIndex === -1) currentIndex = 0;
+
+        updateFullscreenView();
+        previewModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Обновление полноэкранного вида
+    function updateFullscreenView() {
+        if (currentItems.length === 0) return;
+
+        const currentItem = currentItems[currentIndex];
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+
+        modalImage.src = '/' + currentItem.dataset.image;
+        modalTitle.textContent = currentItem.dataset.name;
+
+        document.querySelector('.prev-arrow').style.display = currentIndex > 0 ? 'flex' : 'none';
+        document.querySelector('.next-arrow').style.display = currentIndex < currentItems.length - 1 ? 'flex' : 'none';
+    }
+
+    // Переключение изображений
+    function navigateFullscreen(direction) {
+        if (direction === 'prev' && currentIndex > 0) {
+            currentIndex--;
+        } else if (direction === 'next' && currentIndex < currentItems.length - 1) {
+            currentIndex++;
+        }
+
+        updateFullscreenView();
+    }
+
+    // Закрытие полноэкранного просмотра
+    function closeFullscreenView() {
+        previewModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Запускаем приложение
+    initApp();
+})();
+</script> </body>
+</html>
